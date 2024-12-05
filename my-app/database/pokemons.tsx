@@ -83,9 +83,6 @@ const Pokemons: React.FC = () => {
             className="pokemon-image" 
           />
           <p className="pokemon-types">
-            {pokemon.types.map(type => type.name).join(' / ')
-            
-            }
             {pokemon.types.map(type => type.name).join(' / ')}
           </p>
         </div>
