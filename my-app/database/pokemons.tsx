@@ -50,13 +50,14 @@ const typeColors: { [key: string]: string } = {
 
 const getBackgroundColor = (type: string) => {
   switch (type.toLowerCase()) {
+    
     case "normal":
       return typeColors.normal;
     case "feu":
       return typeColors.fire;
     case "eau":
       return typeColors.water;
-    case "électrique":
+    case "electric":
       return typeColors.electric;
     case "plante":
       return typeColors.grass;
@@ -81,9 +82,8 @@ const getBackgroundColor = (type: string) => {
     case "poison":
       return typeColors.poison;
     case "sol":
-      return typeColors.ground; 
-    case "poison" || "insecte":
-      return `linear-gradient(45deg, ${typeColors.poison} 0%, ${typeColors.poison} 50%, ${typeColors.bug} 50%, ${typeColors.bug} 100%)`;
+      return typeColors.ground;
+    
 
     default:
       return typeColors.normal;
@@ -113,7 +113,7 @@ const Pokemons: React.FC = () => {
           key={pokemon.id} 
           className="pokemon-card"
           style={{
-            backgroundColor: getBackgroundColor(pokemon.types[0].name)
+            background: getBackgroundColor(pokemon.types[0].name)
           }}
         >
           <h2 className="pokemon-name">{pokemon.name}</h2>
