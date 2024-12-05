@@ -1,5 +1,5 @@
 import Pokemons from "../../database/pokemons";
 
-export default function Page() {
+export default function Pokedex() {
   return <Pokemons />;
 }

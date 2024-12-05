@@ -40,28 +40,22 @@ const Pokemons: React.FC = () => {
       .then((data) => setPokemons(data))
       .catch((error) => console.error(error));
   }, []);
-    
+   
+
   return (
     <div className="pokemon-grid">
       {pokemons.map(pokemon => (
-        <Link 
-          key={pokemon.id}
-          to={`/detailPokemon?id=${pokemon.id}`}
-          className="pokemon-card"
-          onClick={() => {
-            window.location.href = `/detailPokemon/${pokemon.id}`;
-          }}
-        >
+        <div key={pokemon.id} className="pokemon-card">
           <h2 className="pokemon-name">{pokemon.name}</h2>
           <img 
             src={pokemon.sprites.normal.male || ''} 
-            alt={pokemon.name}
-            className="pokemon-image"
+            alt={pokemon.name} 
+            className="pokemon-image" 
           />
           <p className="pokemon-types">
             {pokemon.types.map(type => type.name).join(' / ')}
           </p>
-        </Link>
+        </div>
       ))}
     </div>
   );
