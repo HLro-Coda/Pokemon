@@ -14,6 +14,7 @@ export default function LayoutDefault({ children }: { children: React.ReactNode 
         <Logo />
         <Link href="/">Welcome</Link>
         <Link href="/pokedex">Pokedex</Link>
+        <Link href="/équipe">Équipe</Link>
         
         {""}
       </Sidebar>
