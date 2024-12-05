@@ -48,6 +48,48 @@ const typeColors: { [key: string]: string } = {
   fairy: '#EE99AC'
 };
 
+const getBackgroundColor = (type: string) => {
+  switch (type.toLowerCase()) {
+    case "normal":
+      return typeColors.normal;
+    case "feu":
+      return typeColors.fire;
+    case "eau":
+      return typeColors.water;
+    case "électrique":
+      return typeColors.electric;
+    case "plante":
+      return typeColors.grass;
+    case "insecte":
+      return typeColors.bug;
+    case "roche":
+      return typeColors.rock;
+    case "spectre":
+      return typeColors.ghost;
+    case "dragon":
+      return typeColors.dragon;
+    case "acier":
+      return typeColors.steel;
+    case "fée":
+      return typeColors.fairy;
+    case "vol":
+      return typeColors.flying;
+    case "psy":
+      return typeColors.psychic;
+    case "combat":
+      return typeColors.fighting;
+    case "poison":
+      return typeColors.poison;
+    case "sol":
+      return typeColors.ground; 
+    case "poison" || "insecte":
+      return `linear-gradient(45deg, ${typeColors.poison} 0%, ${typeColors.poison} 50%, ${typeColors.bug} 50%, ${typeColors.bug} 100%)`;
+
+    default:
+      return typeColors.normal;
+  }
+};
+
 const Pokemons: React.FC = () => {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
 
@@ -71,9 +113,7 @@ const Pokemons: React.FC = () => {
           key={pokemon.id} 
           className="pokemon-card"
           style={{
-            background: pokemon.types.length > 1
-              ? `linear-gradient(45deg, ${typeColors[pokemon.types[0].name.toLowerCase()]}, ${typeColors[pokemon.types[1].name.toLowerCase()]})`
-              : typeColors[pokemon.types[0].name.toLowerCase()]
+            backgroundColor: getBackgroundColor(pokemon.types[0].name)
           }}
         >
           <h2 className="pokemon-name">{pokemon.name}</h2>
