@@ -1,13 +1,15 @@
 import { createContext } from "react";
 
 const TeamContext = createContext({
+    
     team: [
         {
+           
             name: "",
-            image: ""
+            image: ""   
         }
     ],
-    setTeam: (team: any) => {
+    setTeam: (limit: 6) => {
 
     }
 });
