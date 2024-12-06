@@ -57,7 +57,7 @@ const getBackgroundColor = (type: string) => {
       return typeColors.fire;
     case "eau":
       return typeColors.water;
-    case "electric":
+    case "électrik":
       return typeColors.electric;
     case "plante":
       return typeColors.grass;
@@ -83,6 +83,8 @@ const getBackgroundColor = (type: string) => {
       return typeColors.poison;
     case "sol":
       return typeColors.ground;
+    case "ténèbres":
+      return typeColors.dark;
     
 
     default:
