@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 const TeamContext = createContext({
-    
+
     team: [
         {
            
@@ -9,7 +9,7 @@ const TeamContext = createContext({
             image: ""   
         }
     ],
-    setTeam: (limit: 6) => {
+    setTeam: (team: any) => {
 
     }
 });

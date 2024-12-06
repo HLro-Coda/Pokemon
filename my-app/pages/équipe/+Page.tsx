@@ -7,9 +7,11 @@ export default function Equipe() {
     const { team } = useContext(TeamContext);
     return <div>
         {team.map((pokemon: any) => (
-            <div key={pokemon.id}>
-                <img src={pokemon.image} alt={pokemon.name} />
-                <h1>{pokemon.name}</h1>
+            <div className="pokemon-grid" key={pokemon.id}>
+                <div className="pokemon-card" >
+                    <img src={pokemon.image} alt={pokemon.name} />
+                    <h1>{pokemon.name}</h1>
+                </div>
             </div>
         ))}
     </div>;
