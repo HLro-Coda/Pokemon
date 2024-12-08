@@ -21,4 +21,6 @@ export default async function DetailPokemon({ routeParams }: Props) {
   return {
     pokemon
   }
+
+
 }
