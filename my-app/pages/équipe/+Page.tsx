@@ -4,23 +4,23 @@ import { Link } from "../../components/Link";
 
 const typeColors: { [key: string]: string } = {
     normal: "#A8A878",
-    fighting: "#C03028",
-    flying: "#A890F0",
+    combat: "#C03028",
+    vol: "#A890F0",
     poison: "#A040A0",
-    ground: "#E0C068",
-    rock: "#B8A038",
-    bug: "#A8B820",
-    ghost: "#705898",
-    steel: "#B8B8D0",
-    fire: "#F08030",
-    water: "#6890F0",
-    grass: "#78C850",
-    electric: "#F8D030",
-    psychic: "#F85888",
-    ice: "#98D8D8",
+    sol: "#E0C068",
+    roche: "#B8A038",
+    insecte: "#A8B820",
+    spectre: "#705898",
+    acier: "#B8B8D0",
+    feu: "#F08030",
+    eau: "#6890F0",
+    plante: "#78C850",
+    électrik: "#F8D030",
+    psy: "#F85888",
+    glace: "#98D8D8",
     dragon: "#7038F8",
-    dark: "#705848",
-    fairy: "#EE99AC"
+    tenebres: "#705848",
+    fée: "#EE99AC"
 };
 
 export default function Equipe() {
@@ -99,7 +99,7 @@ export default function Equipe() {
                         key={pokemon.id}
                         className="pokemon-card"
                         style={{
-                            backgroundColor: pokemon.types ? typeColors[pokemon.types[0].name] : typeColors.normal,
+                            backgroundColor: "grey",
                             padding: "0.5rem",
                             borderRadius: "8px",
                             margin: "0.5rem",
@@ -114,13 +114,27 @@ export default function Equipe() {
                             alt={pokemon.name}
                             style={{
                                 width: "120px",
-                                height: "120px"
+                                height: "120px",
+                                imageRendering: "pixelated"
                             }} 
                         />
-                        <p>{pokemon.types[0].name}</p>
-                        
+                        <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.5rem" }}>
+                            {pokemon.types.map((type: string, i: number) => (
+                                <span 
+                                    key={i}
+                                    style={{
+                                        backgroundColor: typeColors[type.toLowerCase()],
+                                        padding: "0.25rem 0.5rem",
+                                        borderRadius: "4px",
+                                        color: "white",
+                                        fontSize: "0.8rem"
+                                    }}
+                                >
+                                    {type}
+                                </span>
+                            ))}
+                        </div>
                         <h2 style={{ margin: "0.5rem 0" }}>{pokemon.name}</h2>
-                        
                         <button 
                             onClick={() => removePokemon(index)}
                             style={{
