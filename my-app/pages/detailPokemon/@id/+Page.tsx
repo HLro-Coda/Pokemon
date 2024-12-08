@@ -17,7 +17,9 @@ export default function DetailPokemon() {
         
         setTeam([...team, {
             name: pokemon.current.name,
-            image: pokemon.current.sprites.normal.male
+            image: currentSprite,
+            types: pokemon.current.types.map((type: any) => type.name),
+            stats: pokemon.current.stats
         }]);
     };
 
