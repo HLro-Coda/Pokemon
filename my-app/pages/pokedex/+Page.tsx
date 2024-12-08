@@ -92,47 +92,94 @@ const getBackgroundColor = (type: string) => {
   }
 };
 
+const typeNames = {
+  normal: "Normal",
+  fire: "Feu",
+  water: "Eau",
+  electric: "Électrik",
+  grass: "Plante",
+  ice: "Glace",
+  fighting: "Combat",
+  poison: "Poison",
+  ground: "Sol",
+  flying: "Vol",
+  psychic: "Psy",
+  bug: "Insecte",
+  rock: "Roche",
+  ghost: "Spectre",
+  dragon: "Dragon",
+  dark: "Ténèbres",
+  steel: "Acier",
+  fairy: "Fée"
+};
+
 const Pokemons: React.FC = () => {
- 
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedType, setSelectedType] = useState('');
 
   useEffect(() => {
     fetch("https://pokedex.coda.memento-dev.fr/pokemon?with=types", {
       headers: {
         "Authorization": `Bearer ${API_KEY}`
-        
       }
     })
       .then((response) => response.json())
       .then((data) => setPokemons(data))
       .catch((error) => console.error(error));
   }, []);
-   
+
+  const filteredPokemons = pokemons.filter(pokemon => {
+    const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesType = selectedType === '' || pokemon.types.some(type => 
+      type.name.toLowerCase() === selectedType.toLowerCase()
+    );
+    return matchesSearch && matchesType;
+  });
 
   return (
-    <div className="pokemon-grid">
-      {pokemons.map(pokemon => (
-        <a href={`/detailPokemon/${pokemon.slug}`} key={pokemon.id}>
-        <div 
-          key={pokemon.id} 
-          className="pokemon-card"
-
-          style={{
-            background: getBackgroundColor(pokemon.types[0].name)
-          }}
+    <div>
+      <div className="filters-container">
+        <input
+          type="text"
+          placeholder="Rechercher un Pokémon..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+        <select 
+          value={selectedType}
+          onChange={(e) => setSelectedType(e.target.value)}
+          className="type-select"
         >
-          <h2 className="pokemon-name">{pokemon.name}</h2>
-          <img 
-            src={pokemon.sprites.normal.male || ''} 
-            alt={pokemon.name} 
-            className="pokemon-image" 
-          />
-          <p className="pokemon-types">
-            {pokemon.types.map(type => type.name).join(' / ')}
-          </p>
-        </div>
-        </a>
-      ))}
+          <option value="">Tous les types</option>
+          {Object.entries(typeNames).map(([slug, name]) => (
+            <option key={slug} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="pokemon-grid">
+        {filteredPokemons.map(pokemon => (
+          <a href={`/detailPokemon/${pokemon.slug}`} key={pokemon.id}>
+            <div className="pokemon-card" style={{
+              background: getBackgroundColor(pokemon.types[0].name)
+            }}>
+              <h2 className="pokemon-name">{pokemon.name}</h2>
+              <img 
+                src={pokemon.sprites.normal.male || ''} 
+                alt={pokemon.name} 
+                className="pokemon-image" 
+              />
+              <p className="pokemon-types">
+                {pokemon.types.map(type => type.name).join(' / ')}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
     </div>
   );
 };

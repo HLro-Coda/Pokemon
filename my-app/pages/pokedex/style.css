@@ -25,6 +25,7 @@
     background: rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     padding: 0.5rem;
+    image-rendering: pixelated;
   }
   
   .pokemon-name {
@@ -34,4 +35,58 @@
   .pokemon-types {
     font-size: 0.9rem;
     margin: 0.5rem 0;
+  }
+  
+  .search-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
+  
+  .search-input {
+    padding: 0.5rem 1rem;
+    width: 300px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .search-input:focus {
+    border-color: #3498db;
+  }
+  
+  .filters-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem;
+    align-items: center;
+  }
+  
+  .type-select {
+    padding: 0.5rem 1rem;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .type-select:focus {
+    border-color: #3498db;
+  }
+  
+  .type-select option {
+    padding: 0.5rem;
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #666;
   }
